@@ -5,11 +5,33 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // -------------------------------------------------------------------------
+  // 0. Scroll Reading Progress Bar (60fps requestAnimationFrame)
+  // -------------------------------------------------------------------------
+  const progressBar = document.getElementById('scrollProgressBar');
+  if (progressBar) {
+    let ticking = false;
+    const updateProgress = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = `${progress}%`;
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateProgress);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  // -------------------------------------------------------------------------
   // 1. Mobile Menu Toggle & Navigation Accessibility
   // -------------------------------------------------------------------------
   const menuToggle = document.getElementById('menuToggle');
   const primaryNav = document.getElementById('primaryNav');
-  const navLinks = document.querySelectorAll('.nav-link, .nav-cta');
+  const navLinks = document.querySelectorAll('.nav-link, .nav-cta, .nav-resume-link');
 
   if (menuToggle && primaryNav) {
     const toggleMenu = (open) => {

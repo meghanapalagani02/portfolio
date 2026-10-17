@@ -2598,3 +2598,83 @@ h1, h2, h3, h4 {
     transform: none !important;
   }
 }
+
+/* --------------------------------------------------------------------------
+   21. SCROLL PROGRESS BAR & RECRUITER ADDITIONS
+   -------------------------------------------------------------------------- */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--purple) 0%, var(--orange) 100%);
+  z-index: 9999;
+  transition: width 0.06s ease-out;
+  pointer-events: none;
+}
+
+.nav-resume-link {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--purple);
+  padding: 5px 11px;
+  border: 1px dashed var(--purple-border);
+  border-radius: 4px;
+  transition: all var(--trans-fast);
+  font-weight: 600;
+}
+
+.nav-resume-link:hover {
+  background-color: var(--purple-soft);
+  color: var(--purple);
+  border-style: solid;
+  transform: translateY(-1px);
+}
+
+.tab-count {
+  display: inline-block;
+  font-size: 0.62rem;
+  padding: 1px 6px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.08);
+  margin-left: 5px;
+  vertical-align: middle;
+  font-weight: 600;
+}
+
+.skill-tab.active .tab-count {
+  background: rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+}
+
+.resume-channel-link {
+  background: rgba(255, 255, 255, 0.22) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+.resume-channel-link:hover {
+  background: #ffffff !important;
+  color: var(--purple) !important;
+  border-color: #ffffff !important;
+}
+
+/* --------------------------------------------------------------------------
+   22. PRINT STYLESHEET
+   -------------------------------------------------------------------------- */
+@media print {
+  .topbar, .menu-toggle, .scroll-progress-bar, .skip-link, .modal-backdrop, .toast, .back-to-top, .details-btn {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .section {
+    page-break-inside: avoid;
+    padding: 24px 0 !important;
+  }
+}
+
